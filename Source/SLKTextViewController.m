@@ -1780,13 +1780,13 @@ CGFloat const SLKAutoCompletionViewDefaultHeight = 140.0;
                             if (prefix.length > 0 && word.length > 0) {
                                 
                                 // Captures the detected symbol prefix
-                                _foundPrefix = prefix;
+                                self.foundPrefix = prefix;
                                 
                                 // Removes the found prefix, or not.
-                                _foundWord = [word substringFromIndex:prefix.length];
+                                self.foundWord = [word substringFromIndex:prefix.length];
                                 
                                 // Used later for replacing the detected range with a new string alias returned in -acceptAutoCompletionWithString:
-                                _foundPrefixRange = NSMakeRange(wordRange.location, prefix.length);
+                                self.foundPrefixRange = NSMakeRange(wordRange.location, prefix.length);
                                 
                                 [self slk_handleProcessedWord:word wordRange:wordRange];
                             }
