@@ -94,6 +94,7 @@ NSString * const SLKTextInputbarDidMoveNotification =   @"SLKTextInputbarDidMove
     [self addSubview:self.textView];
     [self addSubview:self.charCountLabel];
     [self addSubview:self.contentView];
+    [self addSubview:self.hairlineView];
 
     [self slk_setupViewConstraints];
     [self slk_updateConstraintConstants];
@@ -154,6 +155,16 @@ NSString * const SLKTextInputbarDidMoveNotification =   @"SLKTextInputbarDidMove
         _textView.layer.borderColor =  [UIColor colorWithRed:200.0/255.0 green:200.0/255.0 blue:205.0/255.0 alpha:1.0].CGColor;
     }
     return _textView;
+}
+
+- (UIView *)hairlineView
+{
+    if (!_hairlineView) {
+        _hairlineView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, [UIScreen mainScreen].bounds.size.width, 0.5)];
+        _hairlineView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleBottomMargin;
+        _hairlineView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.3];
+    }
+    return _hairlineView;
 }
 
 - (UIView *)contentView
@@ -412,7 +423,7 @@ NSString * const SLKTextInputbarDidMoveNotification =   @"SLKTextInputbarDidMove
 
 - (void)setBackgroundColor:(UIColor *)color
 {
-    self.barTintColor = color;
+    [super setBackgroundColor:color];
 
     self.editorContentView.backgroundColor = color;
 }
